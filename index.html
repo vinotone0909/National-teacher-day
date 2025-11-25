@@ -107,11 +107,21 @@
 
 <body>
 
-<!-- MUSIC AUTOPLAY -->
-<audio autoplay loop>
+    <!-- MUSIC -->
+<audio id="music" loop>
     <source src="aboutyou.mp3" type="audio/mpeg">
 </audio>
 
+<script>
+    // PLAY MUSIC FROM CHORUS
+    const audio = document.getElementById("music");
+
+    window.addEventListener("load", () => {
+        audio.volume = 1.0;        // suara maksimal
+        audio.currentTime = 168;   // mulai dari chorus (2:48)
+        audio.play().catch(()=>{}); // auto play tanpa error
+    });
+</script>
 <!-- PAGE 1 -->
 <div class="page active" id="page1">
     <h2>Isi nama dulu yaa buu 💙</h2>
