@@ -1,85 +1,203 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kartu Hari Guru</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #c7eaff; /* light blue */
-            color: #0d1b2a;
-            text-align: center;
-            padding-top: 60px;
-            overflow: hidden;
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kartu Hari Guru🎉</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: "Poppins", sans-serif;
+        background: #c7eaff;
+        color: #0d1b2a;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        transition: 0.6s ease;
+    }
+
+    .page {
+        display: none;
+        text-align: center;
+        width: 85%;
+        max-width: 420px;
+        animation: fade 0.7s ease;
+    }
+
+    @keyframes fade {
+        from { opacity: 0; transform: translateY(30px); }
+        to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .active {
+        display: block;
+    }
+
+    input, button {
+        margin-top: 18px;
+        padding: 12px;
+        width: 80%;
+        border-radius: 10px;
+        border: none;
+        font-size: 16px;
+    }
+
+    button {
+        background: #0d6efd;
+        color: white;
+        cursor: pointer;
+        font-weight: bold;
+        margin-top: 20px;
+        transition: 0.2s;
+    }
+
+    button:hover {
+        background: #094bb0;
+    }
+
+    /* Fireworks */
+    .firework {
+        position: absolute;
+        width: 5px;
+        height: 5px;
+        background: transparent;
+        border-radius: 50%;
+        animation: explode 1.2s infinite ease-out;
+    }
+
+    @keyframes explode {
+        0% {
+            box-shadow:
+                0 0 #ffea00,
+                0 0 #ff6f00,
+                0 0 #ff4081;
+            transform: scale(0);
         }
-
-        .card {
-            background: rgba(255,255,255,0.4);
-            padding: 25px;
-            border-radius: 15px;
-            width: 85%;
-            max-width: 420px;
-            margin: auto;
-            backdrop-filter: blur(5px);
-            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+        100% {
+            box-shadow:
+                40px 0 #ffea00,
+                -40px 0 #ff6f00,
+                0 40px #ff4081,
+                0 -40px #40c4ff,
+                28px 28px #00e676,
+                -28px -28px #ff1744;
+            transform: scale(1.3);
+            opacity: 0;
         }
+    }
 
-        /* --- LOVE FIREWORK --- */
-        .firework {
-            position: absolute;
-            width: 6px;
-            height: 6px;
-            background: transparent;
-            border-radius: 50%;
-            animation: explode 1.2s infinite ease-out;
-        }
+    /* Floating hearts */
+    .heart {
+        position: absolute;
+        font-size: 22px;
+        color: #ff4d6d;
+        animation: floatUp 4s linear infinite;
+        opacity: 0.8;
+    }
 
-        @keyframes explode {
-            0% {
-                transform: scale(0);
-                opacity: 1;
-            }
-            100% {
-                transform: scale(1.4);
-                opacity: 0;
-            }
-        }
-
-        /* Love particle */
-        .firework::before, .firework::after {
-            content: "❤";
-            position: absolute;
-            font-size: 20px;
-            color: #ff4d6d;
-            animation: float 1.2s infinite ease-out;
-        }
-
-        @keyframes float {
-            0% { transform: translate(0,0) scale(0.4); opacity: 1; }
-            100% { transform: translate(0, -40px) scale(1); opacity: 0; }
-        }
-
-
-    </style>
+    @keyframes floatUp {
+        0% { transform: translateY(0) scale(0.6); opacity: 1; }
+        100% { transform: translateY(-180px) scale(1.3); opacity: 0; }
+    }
+</style>
 </head>
+
 <body>
 
-    <div class="firework" style="top:20%; left:25%; animation-delay:0s;"></div>
-    <div class="firework" style="top:35%; left:70%; animation-delay:0.4s;"></div>
-    <div class="firework" style="top:70%; left:40%; animation-delay:0.8s;"></div>
+<!-- MUSIC AUTOPLAY -->
+<audio autoplay loop>
+    <source src="aboutyou.mp3" type="audio/mpeg">
+</audio>
 
-    <div class="card">
-        <h2 id="title">Selamat Hari Guru 🥳🎉</h2>
-        <p id="output">
-            Wiihhh selamat hari guru yaa guruku tersayang!  
-            Makasii banget sudah bikin kita berkembang sejauh ini
-            dan terus menyemangati kita dalam setiap kegiatan😭❤️  
-            Semoga ibu tetap sehat, bahagia, dan juga selalu sabar 
-            menghadapi kita yang kayak gini.. hehehee
-            dan terus jadi cahaya buat murid-muridnya ✨
+<!-- PAGE 1 -->
+<div class="page active" id="page1">
+    <h2>Isi nama dulu yaa buu 💙</h2>
+    <input type="text" id="nama" placeholder="Masukkan nama ibu guru">
+    <button onclick="nextPage(2)">Kirim</button>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page" id="page2">
+    <h2>Eh iya bu, sekarang tanggal berapa ya?</h2>
+    <input type="number" id="tanggal" placeholder="Contoh: 25112025">
+    <button onclick="nextPage(3)">Lanjut</button>
+</div>
+
+<!-- PAGE 3: FINAL MESSAGE -->
+<div class="page" id="page3">
+    <div class="card" style="
+        background: rgba(255,255,255,0.45);
+        padding: 30px;
+        border-radius: 20px;
+        backdrop-filter: blur(6px);
+        box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    ">
+        <h2 id="title"></h2>
+        <p id="pesan" style="line-height: 1.6; margin-top: 10px;">
         </p>
     </div>
+</div>
+
+<script>
+    function nextPage(num) {
+        document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+        document.getElementById("page" + num).classList.add("active");
+
+        if (num === 3) {
+            // inject nama dan tanggal ke teks
+            let nama = document.getElementById("nama").value || "Ibu Guru";
+            let tanggal = document.getElementById("tanggal").value || "-";
+
+            document.getElementById("title").innerHTML =
+                "Selamat Hari Guru, " + nama + " 💐";
+
+            document.getElementById("pesan").innerHTML =
+                "Hari ini, " + tanggal +
+                " mungkin cuma tanggal biasa… <br><br>" +
+                "Tapi buat kami, ini hari buat ngingetin <br>" +
+                "kalau setiap langkah yang kami punya <br>" +
+                "ada jejak tanganmu di belakangnya. <br><br>" +
+                "Terima kasih sudah jadi cahaya, <br>" +
+                "jadi arah, <br>" +
+                "jadi tempat pulang ilmu kami. <br><br>" +
+                "Semoga semua kebaikanmu balik lagi <br>" +
+                "dengan cara yang lebih lembut, lebih indah. 💙";
+            
+            startFireworks();
+            startHearts();
+        }
+    }
+
+    // FIREWORKS RANDOM
+    function startFireworks() {
+        for (let i = 0; i < 7; i++) {
+            let fw = document.createElement("div");
+            fw.className = "firework";
+            fw.style.top = Math.random() * 80 + "%";
+            fw.style.left = Math.random() * 80 + "%";
+            fw.style.animationDelay = (Math.random() * 1.5) + "s";
+            document.body.appendChild(fw);
+        }
+    }
+
+    // HEARTS FLOATING
+    function startHearts() {
+        setInterval(() => {
+            const heart = document.createElement("div");
+            heart.classList.add("heart");
+            heart.innerHTML = "❤";
+            heart.style.left = Math.random() * window.innerWidth + "px";
+            heart.style.bottom = "-40px";
+            heart.style.animationDuration = (2 + Math.random() * 3) + "s";
+            heart.style.fontSize = (18 + Math.random() * 12) + "px";
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 4000);
+        }, 300);
+    }
+</script>
 
 </body>
 </html>
