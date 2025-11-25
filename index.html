@@ -117,7 +117,7 @@
     const audio = document.getElementById("music");
 
     window.addEventListener("load", () => {
-        audio.volume = 1.0;        // suara maksimal
+        audio.volume = 10.0;        // suara maksimal
         audio.currentTime = 168;   // mulai dari chorus (2:48)
         audio.play().catch(()=>{}); // auto play tanpa error
     });
@@ -125,7 +125,7 @@
 <!-- PAGE 1 -->
 <div class="page active" id="page1">
     <h2>Isi nama dulu yaa kak 🤍💙</h2>
-    <input type="text" id="nama" placeholder="Masukkan nama ibu guru">
+    <input type="text" id="nama" placeholder="Masukkan namanya dulu yaa...">
     <button onclick="nextPage(2)">Kirim</button>
 </div>
 
@@ -210,6 +210,21 @@
             setTimeout(() => heart.remove(), 4000);
         }, 300);
     }
+
+    // STAR FALL
+             function startstar() {
+                 setInvertal(() => {
+                     const heart = document.createElement(" div") 
+                     star. classList.add("star");
+                     star. innerHTML = "⭐🌟";
+                     star. style.left = Math.random() *window.innerWidth +" px";
+                     star. style.bottom = "-40px";
+                     star. style.animationDuration = (2 + Math.random() *3) + "s"
+                     star. style.fontSize = (10 + Math.random() * 8) + "px"
+                     document.body.appendChild(star);
+                     setTimeout(() => star.remove(), 5000);
+                }, 300);
+             }
 </script>
 
 </body>
