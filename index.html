@@ -2,38 +2,34 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kartu ucapan Hari Guru</title>
+    <title>Kartu Hari Guru</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background: #121212;
-            color: white;light blue
+            background: #c7eaff; /* light blue */
+            color: #0d1b2a;
             text-align: center;
             padding-top: 60px;
             overflow: hidden;
         }
 
         .card {
-            background: rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.4);
             padding: 25px;
             border-radius: 15px;
             width: 85%;
             max-width: 420px;
             margin: auto;
-            backdrop-filter: blur(4px);
-            box-shadow: 0 0 15px rgba(255,255,255,0.2);
+            backdrop-filter: blur(5px);
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
         }
 
-        /<* --- KEMBANG API --- */
+        /* --- LOVE FIREWORK --- */
         .firework {
             position: absolute;
-            width: 5px;
-            height: 5px;
+            width: 6px;
+            height: 6px;
             background: transparent;
             border-radius: 50%;
             animation: explode 1.2s infinite ease-out;
@@ -41,24 +37,29 @@
 
         @keyframes explode {
             0% {
-                box-shadow:
-                    0 0 #ffea00,
-                    0 0 #ff6f00,
-                    0 0 #ff4081;
                 transform: scale(0);
+                opacity: 1;
             }
             100% {
-                box-shadow:
-                    40px 0 #ffea00,
-                    -40px 0 #ff6f00,
-                    0 40px #ff4081,
-                    0 -40px #40c4ff,
-                    28px 28px #00e676,
-                    -28px -28px #ff1744;
-                transform: scale(1.3);
+                transform: scale(1.4);
                 opacity: 0;
             }
         }
+
+        /* Love particle */
+        .firework::before, .firework::after {
+            content: "❤";
+            position: absolute;
+            font-size: 20px;
+            color: #ff4d6d;
+            animation: float 1.2s infinite ease-out;
+        }
+
+        @keyframes float {
+            0% { transform: translate(0,0) scale(0.4); opacity: 1; }
+            100% { transform: translate(0, -40px) scale(1); opacity: 0; }
+        }
+
 
     </style>
 </head>
